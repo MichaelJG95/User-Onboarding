@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Form = ({ values, change, errors }) => {
+const Form = ({ values, change, errors, submit }) => {
+
+    const submitHandler = event => {
+        event.preventDefault()
+        submit()
+    }
 
     const changeHandler = event => {
         const { name, value, type, checked } = event.target
@@ -9,8 +14,8 @@ const Form = ({ values, change, errors }) => {
     }
 
     return (
-        <div>
-            <form>
+            <form onSubmit={submitHandler}>
+                <h2>Enter new user details</h2>
                 <div className='errors'>{errors.name}</div>
                 <label>Name: 
                     <input
@@ -51,7 +56,6 @@ const Form = ({ values, change, errors }) => {
                 <button>Submit</button>
 
             </form>
-        </div>
     )
 }
 
