@@ -1,13 +1,17 @@
 import React from 'react'
 
-const changeHandler = event => {
-    
-}
+const Form = ({ values, change, errors }) => {
 
-const Form = ({values}) => {
+    const changeHandler = event => {
+        const { name, value, type, checked } = event.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        change( name, valueToUse)
+    }
+
     return (
         <div>
             <form>
+                <div className='errors'>{errors.name}</div>
                 <label>Name: 
                     <input
                         name='name' 
@@ -16,7 +20,7 @@ const Form = ({values}) => {
                         onChange={changeHandler}
                     />
                 </label>
-
+                <div className='errors'>{errors.email}</div>
                 <label>Email: 
                     <input
                         name='email'
@@ -25,7 +29,7 @@ const Form = ({values}) => {
                         onChange={changeHandler}
                     />
                 </label>
-
+                <div className='errors'>{errors.password}</div>
                 <label>Password: 
                     <input 
                         name='password'
@@ -34,7 +38,7 @@ const Form = ({values}) => {
                         onChange={changeHandler}
                     />
                 </label>
-
+                <div className='errors'>{errors.terms}</div>
                 <label>Terms of Service
                     <input 
                         name='terms'
